@@ -1,68 +1,39 @@
 <!DOCTYPE = HTML>
 <html>
 <head>
-    <title>My First HTML Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage project for the D3 course</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>This is where I'll publish my course work</h1>
-    <p>Heyyy welcome</p>
-    <ul>
-        <li>Item 1 <a href="https://www.google.com">Google</a></li>
-        <li>Item 2</li>
-    </ul>
-
-    <h2>Bar Chart</h2>
-    <div id="chart"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <script>
-      const data = [
-        { name: "A", value: 1 },
-        { name: "B", value: 5 },
-        { name: "C", value: 8 },
-        { name: "D", value: 10 }
-      ];
-
-      const width = 400;
-      const height = 300;
-      const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-
-      const svg = d3
-        .select("#chart")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-      const xScale = d3
-        .scaleBand()
-        .domain(data.map((d) => d.name))
-        .range([margin.left, width - margin.right])
-        .padding(0.2);
-
-      const yScale = d3
-        .scaleLinear()
-        .domain([0, d3.max(data, (d) => d.value)])
-        .nice()
-        .range([height - margin.bottom, margin.top]);
-
-      const g = svg.append("g");
-
-      g.selectAll("rect")
-        .data(data)
-        .join("rect")
-        .attr("x", (d) => xScale(d.name))
-        .attr("y", (d) => yScale(d.value))
-        .attr("width", xScale.bandwidth())
-        .attr("height", (d) => yScale(0) - yScale(d.value))
-        .attr("fill", "steelblue");
-
-      g.append("g")
-        .attr("transform", `translate(0,${height - margin.bottom})`)
-        .call(d3.axisBottom(xScale));
-
-      g.append("g")
-        .attr("transform", `translate(${margin.left},0)`)
-        .call(d3.axisLeft(yScale));
-    </script>
+<body class="bg">
+  <div class="customCursor" aria-hidden="true">
+    <img src="hover-effect.svg" alt="" />
+  </div>
+  <div class="frame" aria-hidden="true">
+    <span class="frameLine frameLineTop"></span>
+    <span class="frameLine frameLineRight"></span>
+    <span class="frameLine frameLineBottom"></span>
+    <span class="frameLine frameLineLeft"></span>
+  </div>
+  <main class="hero">
+    <h1 class="title">I DESIGN <span class="titleIconCursor"><img src="cursor.svg"/></span> INTERACTIVE DATA <span class="titleIconBlob"><img src="blob.svg"/></span>EXPERIENCES</h1>
+    <div class="banner">
+      <div class="bannerScroll">
+      <ul class="bannerList">
+        <li><a href ="placeholder">MAPS</a></li>
+        <li><a href ="placeholder">DASHBOARDS</a></li>
+        <li><a href ="placeholder">EXHIBITIONS</a></li>
+        <li><a href ="placeholder">EXPLORERS</a></li>
+        <li><a href ="placeholder">GAMES</a></li>
+        <li><a href ="placeholder">MICROSITES</a></li>
+        <li><a href ="placeholder">PRESENTATIONS</a></li>
+        <li><a href ="placeholder">INFOGRAPHICS</a></li>
+        <li><a href ="placeholder">REPORTS</a></li>
+      </ul>
+      </div>
+    </div>
+<script src="script.js"></script>
+  </main>
 </body>
 </html>

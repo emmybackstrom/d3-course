@@ -1,0 +1,172 @@
+.title {
+    color: #2C2C2C;
+    font-size: 7.125rem;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -2%;
+    max-width: 18ch;
+}
+
+.bg {
+    background-color: #FFFBF7;
+}
+
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    padding: 7.25rem;
+  }
+
+  .titleIconCursor {
+    display: inline-block;
+    vertical-align: middle;
+    height: 0.85em;
+    width: auto;
+  }
+  .titleIconCursor img {
+    display: block;
+    height: 80%;
+    width: auto;
+    padding-left: 1rem;
+  }
+
+  .titleIconBlob {
+    display: inline-block;
+    vertical-align: middle;
+    height: 0.85em;
+    width: auto;
+  }
+  .titleIconBlob img {
+    display: block;
+    height: 80%;
+    width: auto;
+    padding-right: 1rem;
+  }
+
+.banner {
+    border: #86837F;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 999px;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 90%;
+    overflow: hidden;
+}
+
+.banner li {
+    white-space: nowrap;
+  }
+
+.banner li::after {
+    content: " • ";
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
+.bannerList {
+    list-style: none;
+    display: flex;
+    flex-shrink: 0;
+    width: max-content;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
+
+.bannerScroll {
+    display: flex;
+    width: max-content;
+    flex-shrink: 0;
+    gap: 0;
+}
+
+a {
+    color: #2C2C2C;
+    font-size: 1.5rem;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -2%;
+    text-decoration: none;
+}
+
+/* Custom cursor: hidden by default, smooth transition to hover-effect over links */
+.customCursorActive,
+.customCursorActive * {
+  cursor: none !important;
+}
+
+.customCursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+.customCursor.isOverLink {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.customCursor img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+  /* Page frame: one line per side, 56px from edge, overlapping at corners */
+.frame {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.frameLine {
+    position: absolute;
+    background-color: #B6B6B6;
+}
+
+.frameLineTop {
+    top: 56px;
+    left: 0;
+    right: 0;
+    height: 1px;
+}
+
+.frameLineRight {
+    top: 0;
+    right: 56px;
+    bottom: 0;
+    width: 1px;
+}
+
+.frameLineBottom {
+    bottom: 56px;
+    left: 0;
+    right: 0;
+    height: 1px;
+}
+
+.frameLineLeft {
+    top: 0;
+    left: 56px;
+    bottom: 0;
+    width: 1px;
+}
