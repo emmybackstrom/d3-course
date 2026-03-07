@@ -10,4 +10,59 @@
         <li>Item 1 <a href="https://www.google.com">Google</a></li>
         <li>Item 2</li>
     </ul>
+
+    <h2>Bar Chart</h2>
+    <div id="chart"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script>
+      const data = [
+        { name: "A", value: 1 },
+        { name: "B", value: 5 },
+        { name: "C", value: 8 },
+        { name: "D", value: 10 }
+      ];
+
+      const width = 400;
+      const height = 300;
+      const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+
+      const svg = d3
+        .select("#chart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      const xScale = d3
+        .scaleBand()
+        .domain(data.map((d) => d.name))
+        .range([margin.left, width - margin.right])
+        .padding(0.2);
+
+      const yScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(data, (d) => d.value)])
+        .nice()
+        .range([height - margin.bottom, margin.top]);
+
+      const g = svg.append("g");
+
+      g.selectAll("rect")
+        .data(data)
+        .join("rect")
+        .attr("x", (d) => xScale(d.name))
+        .attr("y", (d) => yScale(d.value))
+        .attr("width", xScale.bandwidth())
+        .attr("height", (d) => yScale(0) - yScale(d.value))
+        .attr("fill", "steelblue");
+
+      g.append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(xScale));
+
+      g.append("g")
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(yScale));
+    </script>
 </body>
+</html>
