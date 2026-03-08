@@ -20,7 +20,6 @@
     let paused = false;
     let listWidth = 0;
     let started = false;
-    let frameCount = 0;
 
     const step = () => {
       if (paused) {
@@ -29,32 +28,18 @@
       }
 
       if (!started) {
-        frameCount += 1;
-        if (frameCount < 2) {
-          requestAnimationFrame(step);
-          return;
-        }
-        // Content width only (no gap between lists – they sit flush so no empty stretch)
         const items = list.children;
-        let contentW = 0;
-        if (items.length >= 2) {
-          const firstRect = items[0].getBoundingClientRect();
-          const lastRect = items[items.length - 1].getBoundingClientRect();
-          contentW = lastRect.right - firstRect.left;
-        } else {
-          contentW = list.getBoundingClientRect().width;
-        }
-        listWidth = Math.round(contentW);
-        if (listWidth <= 0) {
-          listWidth = Math.round(clone1.getBoundingClientRect().left - bannerScroll.getBoundingClientRect().left);
-        }
-        if (listWidth <= 0) {
-          listWidth = Math.round(list.offsetWidth);
-        }
+        const firstRect = items[0].getBoundingClientRect();
+        const lastRect = items[items.length - 1].getBoundingClientRect();
+        listWidth = Math.round(lastRect.right - firstRect.left);
+        
+        console.log(listWidth);
+
         if (listWidth <= 0) {
           requestAnimationFrame(step);
           return;
         }
+
         position = 0;
         bannerScroll.style.transform = `translateX(${position}px)`;
         started = true;
@@ -63,7 +48,10 @@
       }
 
       position -= speed;
+      console.log("position: " + position);
+      console.log("list width: ", listWidth);
       if (position <= -2 * listWidth) {
+        console.log("shifting list");
         position += listWidth;
       }
       bannerScroll.style.transform = `translateX(${position}px)`;
