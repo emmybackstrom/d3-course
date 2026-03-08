@@ -17,7 +17,6 @@
 
     const speed = 1.5;
     let position = 0;
-    let rafId = null;
     let paused = false;
     let listWidth = 0;
     let started = false;
@@ -25,14 +24,14 @@
 
     const step = () => {
       if (paused) {
-        rafId = requestAnimationFrame(step);
+        requestAnimationFrame(step);
         return;
       }
 
       if (!started) {
         frameCount += 1;
         if (frameCount < 2) {
-          rafId = requestAnimationFrame(step);
+          requestAnimationFrame(step);
           return;
         }
         // Content width only (no gap between lists – they sit flush so no empty stretch)
@@ -53,13 +52,13 @@
           listWidth = Math.round(list.offsetWidth);
         }
         if (listWidth <= 0) {
-          rafId = requestAnimationFrame(step);
+          requestAnimationFrame(step);
           return;
         }
         position = 0;
         bannerScroll.style.transform = `translateX(${position}px)`;
         started = true;
-        rafId = requestAnimationFrame(step);
+        requestAnimationFrame(step);
         return;
       }
 
@@ -68,7 +67,7 @@
         position += listWidth;
       }
       bannerScroll.style.transform = `translateX(${position}px)`;
-      rafId = requestAnimationFrame(step);
+      requestAnimationFrame(step);
     };
 
     banner.addEventListener("mouseenter", () => {
@@ -79,7 +78,7 @@
       paused = false;
     });
 
-    rafId = requestAnimationFrame(step);
+    requestAnimationFrame(step);
   };
 
   const initCustomCursor = () => {
